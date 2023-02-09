@@ -36,6 +36,7 @@ import org.apache.skywalking.oap.server.receiver.trace.provider.handler.v8.grpc.
 import org.apache.skywalking.oap.server.receiver.trace.provider.handler.v8.rest.TraceSegmentReportHandler;
 import org.apache.skywalking.oap.server.telemetry.TelemetryModule;
 
+// for trace
 public class TraceModuleProvider extends ModuleProvider {
 
     @Override

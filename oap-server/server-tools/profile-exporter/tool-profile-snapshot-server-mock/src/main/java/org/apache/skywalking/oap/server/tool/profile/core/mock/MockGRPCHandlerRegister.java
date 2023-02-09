@@ -26,6 +26,7 @@ import org.apache.skywalking.oap.server.core.server.GRPCHandlerRegister;
 /**
  * Mock from {@link GRPCHandlerRegister}
  */
+// question: what does mock mean?
 public class MockGRPCHandlerRegister implements GRPCHandlerRegister {
     @Override
     public void addHandler(BindableService handler) {

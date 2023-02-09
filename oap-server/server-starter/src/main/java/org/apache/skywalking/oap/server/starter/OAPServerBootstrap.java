@@ -40,7 +40,7 @@ public class OAPServerBootstrap {
         ModuleManager manager = new ModuleManager();
         try {
             ApplicationConfiguration applicationConfiguration = configLoader.load();
-            manager.init(applicationConfiguration);
+            manager.init(applicationConfiguration);  // provider start
 
             manager.find(CoreModule.NAME)
                    .provider()

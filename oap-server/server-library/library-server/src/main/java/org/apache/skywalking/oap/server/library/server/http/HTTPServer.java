@@ -45,10 +45,11 @@ import org.apache.skywalking.oap.server.library.server.ssl.PrivateKeyUtil;
 
 import static java.util.Objects.requireNonNull;
 
+// 关键
 @Slf4j
 public class HTTPServer implements Server {
     private final HTTPServerConfig config;
-    private ServerBuilder sb;
+    private ServerBuilder sb;  // 建造者模式，armeria
     // Health check service, supports HEAD, GET method.
     private final Set<HttpMethod> allowedMethods = Sets.newHashSet(HttpMethod.HEAD);
 

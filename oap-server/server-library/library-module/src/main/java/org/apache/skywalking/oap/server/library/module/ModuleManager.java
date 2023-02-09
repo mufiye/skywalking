@@ -37,12 +37,13 @@ public class ModuleManager implements ModuleDefineHolder {
     public void init(
         ApplicationConfiguration applicationConfiguration) throws ModuleNotFoundException, ProviderNotFoundException, ServiceNotProvidedException, CycleDependencyException, ModuleConfigException, ModuleStartException {
         String[] moduleNames = applicationConfiguration.moduleList();
-        ServiceLoader<ModuleDefine> moduleServiceLoader = ServiceLoader.load(ModuleDefine.class);
+        ServiceLoader<ModuleDefine> moduleServiceLoader = ServiceLoader.load(ModuleDefine.class);  // spi机制
         ServiceLoader<ModuleProvider> moduleProviderLoader = ServiceLoader.load(ModuleProvider.class);
 
         HashSet<String> moduleSet = new HashSet<>(Arrays.asList(moduleNames));
         for (ModuleDefine module : moduleServiceLoader) {
             if (moduleSet.contains(module.name())) {
+                // 加载配置项和moduleProvider
                 module.prepare(this, applicationConfiguration.getModuleConfiguration(module.name()), moduleProviderLoader);
                 loadedModules.put(module.name(), module);
                 moduleSet.remove(module.name());
@@ -55,8 +56,10 @@ public class ModuleManager implements ModuleDefineHolder {
             throw new ModuleNotFoundException(moduleSet.toString() + " missing.");
         }
 
+        // question?
         BootstrapFlow bootstrapFlow = new BootstrapFlow(loadedModules);
 
+        // question? 正式的启动过程
         bootstrapFlow.start(this);
         bootstrapFlow.notifyAfterCompleted();
     }

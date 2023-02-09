@@ -18,6 +18,7 @@
 
 package org.apache.skywalking.oap.server.library.server;
 
+// oap中的server一共有两种实现：http和grpc
 public interface Server {
     void initialize();
 

@@ -19,6 +19,7 @@
 package org.apache.skywalking.oap.server.starter;
 
 public class OAPServerStartUp {
+    // oap server的启动位置
     public static void main(String[] args) {
         OAPServerBootstrap.start();
     }

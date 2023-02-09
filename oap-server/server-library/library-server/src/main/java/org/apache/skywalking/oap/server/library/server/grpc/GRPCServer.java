@@ -37,6 +37,7 @@ import org.apache.skywalking.oap.server.library.server.ServerException;
 import org.apache.skywalking.oap.server.library.server.grpc.ssl.DynamicSslContext;
 import org.apache.skywalking.oap.server.library.server.pool.CustomThreadFactory;
 
+// 关键
 @Slf4j
 public class GRPCServer implements Server {
 
@@ -44,8 +45,8 @@ public class GRPCServer implements Server {
     private final int port;
     private int maxConcurrentCallsPerConnection;
     private int maxMessageSize;
-    private io.grpc.Server server;
-    private NettyServerBuilder nettyServerBuilder;
+    private io.grpc.Server server;  // need to learn grpc
+    private NettyServerBuilder nettyServerBuilder;  // need to learn netty of grpc
     private String certChainFile;
     private String privateKeyFile;
     private String trustedCAsFile;

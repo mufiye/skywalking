@@ -31,7 +31,7 @@ public abstract class ModuleProvider implements ModuleServiceHolder {
     @Setter
     private ModuleManager manager;
     @Setter
-    private ModuleDefine moduleDefine;
+    private ModuleDefine moduleDefine; // 该模块实现所属于的模块
     private final Map<Class<? extends Service>, Service> services = new HashMap<>();
 
     public ModuleProvider() {

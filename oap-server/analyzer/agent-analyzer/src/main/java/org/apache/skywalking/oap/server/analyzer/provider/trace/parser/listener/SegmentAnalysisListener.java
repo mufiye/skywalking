@@ -180,7 +180,7 @@ public class SegmentAnalysisListener implements FirstAnalysisListener, EntryAnal
 
         segment.setEndpointId(endpointId);
 
-        sourceReceiver.receive(segment);
+        sourceReceiver.receive(segment);  // receive表示存储
         addAutocompleteTags();
     }
 

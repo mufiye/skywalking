@@ -224,7 +224,7 @@ public class CoreModuleProvider extends ModuleProvider {
         if (moduleConfig.getGRPCThreadPoolSize() > 0) {
             grpcServer.setThreadPoolSize(moduleConfig.getGRPCThreadPoolSize());
         }
-        grpcServer.initialize();
+        grpcServer.initialize();  // grpc server负责与agent进行通信
 
         HTTPServerConfig httpServerConfig = HTTPServerConfig.builder()
                                                             .host(moduleConfig.getRestHost())
@@ -237,6 +237,10 @@ public class CoreModuleProvider extends ModuleProvider {
                                                             .maxRequestHeaderSize(
                                                                 moduleConfig.getHttpMaxRequestHeaderSize())
                                                             .build();
+        /*
+            这个http server不仅可以接收agent的数据（在skywalking-java-agent好像没有），
+            还可以接收来自webapp创建的client的请求？
+        */
         httpServer = new HTTPServer(httpServerConfig);
         httpServer.initialize();
 

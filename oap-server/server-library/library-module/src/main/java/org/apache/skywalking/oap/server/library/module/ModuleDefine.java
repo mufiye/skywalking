@@ -35,6 +35,7 @@ public abstract class ModuleDefine implements ModuleProviderHolder {
 
     private ModuleProvider loadedProvider = null;
 
+    // 模块名称。任意字符串名称，全局不唯一，不能和其他加载的模块重名
     private final String name;
 
     public ModuleDefine(String name) {
@@ -48,6 +49,7 @@ public abstract class ModuleDefine implements ModuleProviderHolder {
         return name;
     }
 
+    // 对外开放的API服务列表
     /**
      * @return the {@link Service} provided by this module.
      */
@@ -62,6 +64,7 @@ public abstract class ModuleDefine implements ModuleProviderHolder {
      */
     void prepare(ModuleManager moduleManager, ApplicationConfiguration.ModuleConfiguration configuration,
                  ServiceLoader<ModuleProvider> moduleProviderLoader) throws ProviderNotFoundException, ServiceNotProvidedException, ModuleConfigException, ModuleStartException {
+        // 填充对应的ModuleProvider
         for (ModuleProvider provider : moduleProviderLoader) {
             if (!configuration.has(provider.name())) {
                 continue;
@@ -87,6 +90,7 @@ public abstract class ModuleDefine implements ModuleProviderHolder {
             throw new ProviderNotFoundException(this.name() + " module no provider found.");
         }
 
+        // 初始化配置项
         LOGGER.info("Prepare the {} provider in {} module.", loadedProvider.name(), this.name());
         try {
             final ModuleProvider.ConfigCreator creator = loadedProvider.newConfigCreator();

@@ -38,6 +38,7 @@ import org.yaml.snakeyaml.Yaml;
  * <p>
  * At last, override setting by system.properties and system.envs if the key matches moduleName.provideName.settingKey.
  */
+// 配置设置依据顺序：application.yml -> application-default.yml -> system.properties and system.envs
 @Slf4j
 public class ApplicationConfigLoader implements ConfigLoader<ApplicationConfiguration> {
     private static final String DISABLE_SELECTOR = "-";
@@ -45,6 +46,7 @@ public class ApplicationConfigLoader implements ConfigLoader<ApplicationConfigur
 
     private final Yaml yaml = new Yaml();
 
+    // 加载配置
     @Override
     public ApplicationConfiguration load() throws ConfigFileNotFoundException {
         ApplicationConfiguration configuration = new ApplicationConfiguration();
